@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   root to: 'users#home'
 
-  get '/signin', to: 'users#sign_in'
-
+  get '/sign_in', to: 'users#sign_in'
+  get '/logout', to: 'sessions#destroy'
+  post '/rides/new', to: 'rides#new'
 
 end

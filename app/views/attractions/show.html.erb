@@ -1,0 +1,22 @@
+<%= label_tag "Name: " %> <%= @attraction.name %><br>
+
+<%= label_tag "Total Number of Users: " %> <%= @attraction.users.count %><br>
+
+<%= label_tag "Ticket Requirement: " %> <%= @attraction.tickets %><br>
+
+<%= label_tag "Height Requirement: " %> <%= @attraction.min_height %> inches<br>
+
+<%= label_tag "Nausea Rating: " %> <%= @attraction.nausea_rating %><br>
+
+<%= label_tag "Happiness Rating: " %> <%= @attraction.happiness_rating %><br>
+
+<% if current_user.admin? %>
+  <%= link_to "Edit Attraction", edit_attraction_path(@attraction) %><br>
+<% else %>
+  <%= form_tag "/rides/new", method: "post" do %>
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :attraction_id, @attraction.id %>
+    <%= submit_tag "Go on this ride" %>
+  <% end %>
+<% end %>
+<%= link_to "Back", :back %>

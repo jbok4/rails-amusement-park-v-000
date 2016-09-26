@@ -1,0 +1,32 @@
+<div class="container" role="main">
+      <p id="notice">Welcome back to the theme park!</p>
+
+
+  <div class="center">
+    <div class="pic">
+      <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg" height="250">
+    </div>
+
+    <div class="info">
+      <% if @user.admin? %>
+        <h5><strong>ADMIN</strong></h5>
+      <% end %>
+
+      <%= label_tag "Name: " %>
+      <%= @user.name %><br>
+
+      <%= label_tag "Tickets: " %>
+      <%= @user.tickets %><br>
+
+      <%= label_tag "Mood: " %>
+      <%= @user.mood %><br>
+
+      <%= label_tag "Height: " %>
+      <%= @user.height %><br>
+
+      <%= link_to "Edit", edit_user_path(@user) %><br>
+
+      <%= link_to "See attractions", attractions_path %>
+    </div>
+  </div>
+</div>
