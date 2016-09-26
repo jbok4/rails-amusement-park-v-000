@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   root to: 'users#home'
 
+  get '/signin', to: 'users#sign_in'
+
 
 end

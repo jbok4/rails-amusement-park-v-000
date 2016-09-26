@@ -1,1 +1,23 @@
-_form.html.erb
+<%= form_for @user do |f| %>
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br />
+
+  <%= f.label "Height (in inches)" %>:
+  <%= f.text_field :height %><br />
+
+  <%= f.label 'How happy are you? (1-5 scale)' %>:
+  <%= f.text_field :happiness %><br />
+
+  <%= f.label 'How nauseous are you? (1-5 scale)' %>:
+  <%= f.text_field :nausea %><br />
+
+  <%= f.label 'How many tickets would you like to purchase for $1 each' %>:
+  <%= f.text_field :tickets %><br />
+
+  <%= f.label 'Check box if you are a theme park owner' %>:
+  <%= f.check_box :admin %><br />
+
+  <%= f.submit "Create User" %>
+<% end %>
+
+<%= link_to "Back", root_path %>
