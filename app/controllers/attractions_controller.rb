@@ -1,11 +1,12 @@
 class AttractionsController < ApplicationController
+  before_action :set_attraction, only: [:show, :edit, :update, :destroy]
 
   def index
     @attractions = Attraction.all
   end
 
   def show
-    @attraction = Attraction.find(params[:id])
+    @ride = Ride.new
   end
 
   def new
@@ -18,7 +19,7 @@ class AttractionsController < ApplicationController
   end
 
   def edit
-    @attraction = Attraction.find(params[:id])
+    #@attraction = Attraction.find(params[:id])
   end
 
   def update
