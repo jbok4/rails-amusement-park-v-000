@@ -1,0 +1,25 @@
+class AttractionsController < ApplicationController
+
+  def index
+  end
+
+  def show
+  end
+
+  def new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def attraction_params
+    params.require(:attraction).permit(:name, :tickets, :nausea_rating, :happiness_rating, :min_height)
+  end
+  
+end
