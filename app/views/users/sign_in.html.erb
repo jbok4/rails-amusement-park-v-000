@@ -1,6 +1,12 @@
-<%= form_tag users_path, method: 'post' do  %>
-  <%= label_tag "Select your name" %><br>
-  <%= collection_select(:user, :id, User.all, :id, :name, include_blank: true ) %><br><br>
+<%= form_for @user, url: "/users/sign_in" do |f| %>
 
-  <%= submit_tag "Sign In" %>
+  <div class="field"><%= f.label :name, "Select your name" %><br>
+    <%= f.collection_select(:id, @users, :id, :name) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign In"  %>
 <% end %>
+
+
+  </div>
