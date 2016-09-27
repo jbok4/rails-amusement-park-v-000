@@ -1,9 +1,11 @@
 class RidesController < ApplicationController
 
-  def new
-    @ride = Ride.create(:user_id => params[:user_id], :attraction_id => params[:attraction_id])
+  def create
+    @attraction = Attraction.find_by(id: params[:attraction_id])
+    @ride = @attraction.rides.create 
+    @ride.user = current_user
     @message = @ride.take_ride
-    redirect_to user_path(@ride.user, :message => @message)
+    redirect_to user_path(current_user), notice: "#{@message}"
   end
 
 end

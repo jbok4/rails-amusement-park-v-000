@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  def home
-  end
 
   def new
     @user = User.new
@@ -10,37 +6,39 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        session[:user_id] = @user.id
-        format.html { redirect_to user_path(@user), notice: "Welcome to the theme park!" }
-      else
-        format.html { render :new }
-       end
-    end
-  end
-
-  def show
-    @user = current_user
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to user_path(@user), notice: "Welcome to the theme park!"
+    else
+      render :new
+   end
   end
 
   def edit
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user)
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
-  def sign_in
-    @user = User.new
+  def show
+    @user = User.find(params[:id])
   end
+
+  def index
+    @user = User.all
+  end
+
+  private
 
   def user_params
     params.require(:user).permit(:name, :password, :nausea, :happiness, :tickets, :height, :admin)
   end
-
 
 end

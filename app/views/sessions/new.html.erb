@@ -1,0 +1,12 @@
+<h1>Log in</h1>
+
+
+<%= form_for @user, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
+
+  <%= f.label :name, "Select your name" %><br>
+  <%= f.collection_select :id, User.all, :id, :name %><br><br>
+  <%= f.submit "Sign In" %>
+
+<% end %> 
+
+<%= session[:user_id] %>

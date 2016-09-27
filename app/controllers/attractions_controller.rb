@@ -1,12 +1,11 @@
 class AttractionsController < ApplicationController
-  before_action :set_attraction, only: [:show, :edit, :update, :destroy]
 
   def index
     @attractions = Attraction.all
   end
 
   def show
-    @ride = Ride.new
+    @attraction = Attraction.find(params[:id])
   end
 
   def new
@@ -19,14 +18,20 @@ class AttractionsController < ApplicationController
   end
 
   def edit
-    #@attraction = Attraction.find(params[:id])
+    @attraction = Attraction.find(params[:id])
   end
 
   def update
     @attraction = Attraction.find(params[:id])
     @attraction = Attraction.update(attraction_params)
-    redirect_to attraction_path(@attraction)
+    if @attraction.save
+      redirect_to attraction_path(@attraction)
+    else
+      render :edit
+    end
   end
+
+  private
 
   def attraction_params
     params.require(:attraction).permit(:name, :tickets, :nausea_rating, :happiness_rating, :min_height)

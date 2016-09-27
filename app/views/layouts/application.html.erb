@@ -14,7 +14,8 @@
 
     <!-- content -->
     <div class="container"  role="main">
-      <%= flash[:notice] %>
+      <%= render 'layouts/messages' %> </br>
+
       <%= yield %>
     </div>
 
