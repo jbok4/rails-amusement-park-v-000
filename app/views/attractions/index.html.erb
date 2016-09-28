@@ -1,12 +1,16 @@
+<div class="pic">
+  <img src="https://castlefordschools.files.wordpress.com/2015/04/title-clipart-kinrbxpiq.png" height="250">
+</div></br></br>
+
 <h1>Listing Attractions</h1>
 
 <br>
-<%= link_to "New Attraction", new_attraction_path %>
 
-<% if current_user.admin %>
   <%= link_to "New Attraction", new_attraction_path %>
-<% end %>
+
 <br><br>
+
+
 
 <table style="width:100%">
   <tr>
@@ -26,6 +30,5 @@
       <td><%= link_to "Go on #{attraction.name}", attraction_path(attraction) %></td>
     <% end %>  
   </tr>
-
 <% end %>  
 </table>

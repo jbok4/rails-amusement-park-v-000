@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   def create
     if @user = User.find_by(id: params[:user][:id])
       session[:user_id] = @user.id
-      redirect_to user_path(@user), notice: "Welcome back to the theme park!"
+      redirect_to user_path(@user)
     else
       redirect_to :new, alert: "Please enter a valid user name, or create an account."
     end

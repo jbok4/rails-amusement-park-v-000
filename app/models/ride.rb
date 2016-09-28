@@ -19,6 +19,7 @@ class Ride < ActiveRecord::Base
         attraction.users << user
         attraction.save
         user.save
+        "Thanks for riding the #{attraction.name}!"
       end
     else
       "Sorry. You do not have enough tickets the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
