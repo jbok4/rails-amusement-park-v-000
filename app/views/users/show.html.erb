@@ -7,13 +7,13 @@
   </div>
 
 
-<h1><%= @user.name %></h1>
+<h1>Hello, <%= @user.name.capitalize %></h1>
 
 <% if @user.admin %>
-  ADMIN
+  <h3>ADMIN</h3>
 <% else %>
-  Guest
-<%end%></br></br>
+  <h3>GUEST</h3>
+<%end%>
 
 <p>Mood: <%= @user.mood %></p>
 <p>Tickets: <%= @user.tickets %></p>
