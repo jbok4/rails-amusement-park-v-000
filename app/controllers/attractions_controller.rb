@@ -13,8 +13,14 @@ class AttractionsController < ApplicationController
   end
 
   def create
-    @attraction = Attraction.create(attraction_params)
-    redirect_to attraction_path(@attraction)
+    @attraction = Attraction.new(attraction_params)
+    if @attraction.save
+      redirect_to attraction_path(@attraction)
+    else
+      render :new
+    end
+    #@attraction = Attraction.create(attraction_params)
+    #redirect_to attraction_path(@attraction)
   end
 
   def edit
