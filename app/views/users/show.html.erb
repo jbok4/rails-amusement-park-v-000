@@ -4,6 +4,7 @@
     <div class="pic">
       <img src="http://www.fillmurray.com/300/300">
     </div>
+  </div>
 
 
 <h1><%= @user.name %></h1>
@@ -17,5 +18,7 @@
 <p>Mood: <%= @user.mood %></p>
 <p>Tickets: <%= @user.tickets %></p>
 <p>Height: <%= @user.height %></p>
+
+<%= link_to 'Edit User', [:edit, @user] %>
 
 </div>
