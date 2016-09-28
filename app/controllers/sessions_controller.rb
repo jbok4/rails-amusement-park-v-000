@@ -5,16 +5,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if @user = User.find_by(id: params[:user][:id])
-      session[:user_id] = @user.id
+    user = User.find_by(name: params[:session][:name])
+    if user && user.authenticate(params[session][:password]
+      log_in user
       redirect_to user_path(@user)
     else
-      redirect_to :new, alert: "Please enter a valid user name, or create an account."
+      flash.now[:danger] = 'Invalid email/password combination'
+      render 'new'
+      #redirect_to :new, alert: "Please enter a valid user name, or create an account."
     end
   end
 
   def destroy
-    session.clear
+    log_out
     redirect_to root_path
   end
 
