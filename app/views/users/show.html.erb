@@ -1,10 +1,8 @@
 <div class="container" role="main">
-      <p id="notice">Welcome back to the theme park!</p>
-
 
   <div class="center">
     <div class="pic">
-      <img src="https://s-media-cache-ak0.pinimg.com/236x/f6/cb/be/f6cbbe90651b6d7251266d9e1435e188.jpg" height="250">
+      <img src="http://www.fillmurray.com/300/300">
     </div>
 
 
@@ -13,9 +11,11 @@
 <% if @user.admin %>
   ADMIN
 <% else %>
-  GUEST
-<%end%>
+  Guest
+<%end%></br></br>
 
 <p>Mood: <%= @user.mood %></p>
 <p>Tickets: <%= @user.tickets %></p>
 <p>Height: <%= @user.height %></p>
+
+</div>
