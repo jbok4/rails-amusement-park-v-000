@@ -2,27 +2,37 @@ class Ride < ActiveRecord::Base
   belongs_to :attraction
   belongs_to :user
 
+  def enough_tickets?
+    if user.tickets < attraction.tickets
+      "Sorry. You do not have enough tickets for the #{attraction.name}."
+    end
+  end
+
+  def tall_enough?
+    if self.user.height < self.attraction.min_height
+      "Sorry. You are not tall enough to ride the #{attraction.name}."
+    end
+  end
+
   def take_ride
-    user = User.find(self.user_id)
-    attraction = Attraction.find(self.attraction_id)
-    if !user.tickets.nil? && !user.height.nil?
-      if user.tickets < attraction.tickets && user.height < attraction.min_height
-        "Sorry. You do not have enough tickets the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
-      elsif user.tickets < attraction.tickets
-        "Sorry. You do not have enough tickets the #{attraction.name}."
-      elsif user.height < attraction.min_height
-        "Sorry. You are not tall enough to ride the #{attraction.name}."
-      else
-        user.tickets = user.tickets - attraction.tickets
-        user.nausea = user.nausea + attraction.nausea_rating
-        user.happiness = user.happiness + attraction.happiness_rating
-        attraction.users << user
-        attraction.save
-        user.save
-        "Thanks for riding the #{attraction.name}!"
-      end
+    if enough_tickets? && tall_enough?
+      "Sorry. You do not have enough tickets for the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
+    elsif enough_tickets?
+      enough_tickets?
+    elsif tall_enough?
+      tall_enough?
     else
-      "Sorry. You do not have enough tickets the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
+      user = self.user
+
+      new_happiness = user.happiness + self.attraction.happiness_rating
+      new_nausea = user.nausea + self.attraction.nausea_rating
+      new_tickets =  user.tickets - self.attraction.tickets
+
+      user.update!(happiness: new_happiness)
+      user.update!(nausea: new_nausea)
+      user.update!(tickets: new_tickets)
+      user.save
+      "Thanks for riding the #{self.attraction.name}!"
     end
   end
 

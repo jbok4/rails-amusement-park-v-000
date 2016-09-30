@@ -19,8 +19,6 @@ class AttractionsController < ApplicationController
     else
       render :new
     end
-    #@attraction = Attraction.create(attraction_params)
-    #redirect_to attraction_path(@attraction)
   end
 
   def edit

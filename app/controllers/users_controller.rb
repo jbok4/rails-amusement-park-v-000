@@ -10,13 +10,12 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user
     else
-      render :new
+      redirect_to new_user_path
    end
   end
 
   def edit
     @user = User.find(params[:id])
-
   end
 
   def update
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.all
+    #@user = User.all
   end
 
   private
