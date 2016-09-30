@@ -5,13 +5,12 @@ class User < ActiveRecord::Base
   has_many :rides
   has_many :attractions, through: :rides
 
-  enum role: [:user, :admin]
+  #enum role: [:user, :admin]
 
   def mood
-    if self.nausea <= self.happiness
-      "happy"
-    else
-      "sad"
+    if self.happiness && self.nausea 
+      mood = self.happiness - self.nausea 
+      mood > 0 ? "happy" : "sad"
     end
   end
 
